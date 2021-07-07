@@ -28,7 +28,7 @@
 
 Так как методическое описание к лабораторной работе дает свободу в выборе варианта генерации данных мной был выбран способ адаптации готовых данных с "заплатками" в виде генераторов в тех местах, в которых выбранный мной ресурс с данными не мог покрыть.  
 Данные для таких сущностей как: Film, Person, Country, Genre, Studio, Role и Screenshot были взяты с ресурса [https://www.themoviedb.org/](themoviedb.org) который является большой базой данных фильмов с удобным API. Для взаимодействия с сетью использовалась библиотека retrofit.  
-Получить данные для сущности Award с themoviedb оказалось невозможным, поэтому мной в ручную был составлен локальный датасет в виде json файла: [award.json](MovieDBGenerator/src/main/data/awards.json)
+Получить данные для сущности Award с themoviedb оказалось невозможным, поэтому мной в ручную был составлен локальный датасет в виде json файла: [award.json](src/main/data/awards.json)
 
 ### Дополненительная информация ###
 
@@ -53,52 +53,52 @@ ALTER TABLE film ADD UNIQUE (name, year);
 Данные для всех столбцов таблицы получались GET-запросом от themoviedb, однако их база данных не располагает информацией для каждого предоставляемого ими фильма в полном объеме.
 Поэтому для **budget** в тех случаях, когда получить информацию для этого поля не получалось генерировалось случайное число в диапазоне от 1 до Integer.MAX_VALUE.
 Идентичная ситуация со столбцом **description** (хотя встречается значительно реже). Для решения данной проблемы было взято [пользовательское решение с гитхаба](https://github.com/mdeanda/lorem) - генератор Lorem Ipsum.  
-Код модели данных - [FilmModel.java](MovieDBGenerator/src/main/java/Model/FilmModel.java)  
-Код класса генератора - [FilmGenerator.java](MovieDBGenerator/src/main/java/Generator/FilmGenerator.java)  
+Код модели данных - [FilmModel.java](src/main/java/Model/FilmModel.java)  
+Код класса генератора - [FilmGenerator.java](src/main/java/Generator/FilmGenerator.java)  
 
 ### Генерация данных для таблицы Country ###
 В данном случае themoviedb прекрасно удовлетворяет все наши потребности - возвращается список из большого количества стран.  
-Код модели данных - [CountryModel.java](MovieDBGenerator/src/main/java/Model/CountryModel.java)  
-Код класса генератора - [CountryGenerator.java](MovieDBGenerator/src/main/java/Generator/CountryGenerator.java)  
+Код модели данных - [CountryModel.java](src/main/java/Model/CountryModel.java)  
+Код класса генератора - [CountryGenerator.java](src/main/java/Generator/CountryGenerator.java)  
 
 ### Генерация данных для таблицы Genre ###
 Датасет themoviedb содержит в себе *19* наименований различных жанров кино, которые по моему мнению удачно соответствуют ограничениям предметной области и дают возможность сгенерировать большое количество комбинаций для таблицы genre_film. Вследствие чего отказался от идеи генерации каких-либо дополнительных "жанров".  
-Код модели данных - [GenreModel.java](MovieDBGenerator/src/main/java/Model/GenreModel.java)  
-Код класса генератора - [GenreGenerator.java](MovieDBGenerator/src/main/java/Generator/GenreGenerator.java)  
+Код модели данных - [GenreModel.java](src/main/java/Model/GenreModel.java)  
+Код класса генератора - [GenreGenerator.java](src/main/java/Generator/GenreGenerator.java)  
 
 ### Генерация данных для таблицы Studio ###
 Themoviedb содержит в себе огромное количество наименований различных студий и компаний кинопроизводства.  
-Код модели данных - [StudioModel.java](MovieDBGenerator/src/main/java/Model/StudioModel.java)  
-Код класса генератора - [StudioGenerator.java](MovieDBGenerator/src/main/java/Generator/StudioGenerator.java)  
+Код модели данных - [StudioModel.java](src/main/java/Model/StudioModel.java)  
+Код класса генератора - [StudioGenerator.java](src/main/java/Generator/StudioGenerator.java)  
 
 ### Генерация данных для таблицы Person ###
 Для таблицы *Person* из themoviedb я получал имена людей(**person_name**) и дату рождения(**date_of_birth**), однако не для каждого человека предоставляется дата рождения, в таком случае дата рождения генерировалась.  
 Поле *country_of_birth* заполнялось рандомным id полученным в результате sql-запроса ```sql SELECT id FROM country ORDER BY random() LIMIT 1 ```.  
-Код модели данных - [PersonModel.java](MovieDBGenerator/src/main/java/Model/PersonModel.java)  
-Код класса генератора - [PersonGenerator.java](MovieDBGenerator/src/main/java/Generator/PersonGenerator.java)  
+Код модели данных - [PersonModel.java](src/main/java/Model/PersonModel.java)  
+Код класса генератора - [PersonGenerator.java](src/main/java/Generator/PersonGenerator.java)  
 
 ### Генерация данных для таблицы Screen ###
 URL адреса изображения получались GET запросом к themoviedb. Поле **film_id** заполнялось рандомным id полученным в результате sql-запроса ```sql SELECT id FROM film ORDER BY random() LIMIT 1 ```.  
-Код модели данных - [FilmModel.java](MovieDBGenerator/src/main/java/Model/FilmModel.java)  
-Код класса генератора - [ScreenshotGenerator.java](MovieDBGenerator/src/main/java/Generator/ScreenshotGenerator.java)  
+Код модели данных - [FilmModel.java](src/main/java/Model/FilmModel.java)  
+Код класса генератора - [ScreenshotGenerator.java](src/main/java/Generator/ScreenshotGenerator.java)  
 
 ### Генерация данных для таблицы Role ###
 Датасет themoviedb содержит в себе *12* наименований различных подразделений работников на съемочной площадке, которые по моему мнению удачно соответствуют ограничениям предметной области и дают возможность сгенерировать большое количество комбинаций для таблицы person_in_film. Вследствие чего отказался от идеи генерации множества различных должностей.  
-Код модели данных - [RoleModel.java](MovieDBGenerator/src/main/java/Model/RoleModel.java)  
-Код класса генератора - [RoleGenerator.java](MovieDBGenerator/src/main/java/Generator/RoleGenerator.java)  
+Код модели данных - [RoleModel.java](src/main/java/Model/RoleModel.java)  
+Код класса генератора - [RoleGenerator.java](src/main/java/Generator/RoleGenerator.java)  
 
 ### Генерация данных для таблицы Award ###
 Как уже упоминалось выше themoviedb не продоставляет возможности получить какую-нибудь информацию в категории "награды". Найти альтернативный сервис с удобным API и хорошим датасетом мне не удалось, поэтому я решил создать свой локальный датасет внутри проекта.  
 В нем содержится *20* различных наименований наград и премий. Я счел это достаточным числом, которое дает возможность сгенерировать большое количество комбинаций для таблицы person_award.  
-Код модели данных - [AwardModel.java](MovieDBGenerator/src/main/java/Model/AwardModel.java)  
-Код класса генератора - [AwardGenerator.java](MovieDBGenerator/src/main/java/Generator/AwardGenerator.java)  
+Код модели данных - [AwardModel.java](src/main/java/Model/AwardModel.java)  
+Код класса генератора - [AwardGenerator.java](src/main/java/Generator/AwardGenerator.java)  
 
 ### Дополнительная информация ###
 Хотя таблицы *Genre*, *Role* и *Award* имеют ограниченный пул значений, генераторы для этих данных все равно являются параметризированными (требования ТЗ).  
 
 ### Генерация данных для ассоциативных таблиц ###
 Генерируются данные для таблиц *genre_film*, *country_film*, *studio_film*, *person_in_film*, *person_award*.  
-Код класса генератора - [GenerateAssociativeEntities.java](MovieDBGenerator/src/main/java/Generator/GenerateAssociativeEntities.java)
+Код класса генератора - [GenerateAssociativeEntities.java](src/main/java/Generator/GenerateAssociativeEntities.java)
 
 ### Результаты работы генераторов ##
 
