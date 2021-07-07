@@ -1,11 +1,11 @@
-# Генерация тестовых данных, Лабораторная №2 из курса "Базы данных" #
+# Генерация тестовых данных, Лабораторная №2 из курса "Базы данных", Отчёт #
 
 ## Цели работы ##
 Сформировать набор данных, позволяющий производить операции на реальных объемах данных.
 
 
 Структура БД:
-![schema](MovieDBGenerator/images/MovieLibDB.png)
+![schema](images/MovieLibDB.png)
 
 
 ## Программа работы ##
@@ -104,31 +104,31 @@ URL адреса изображения получались GET запросо�
 
 Генерация 15 значений для таблицы *film*:  
 
-![generate film](MovieDBGenerator/images/FilmGenerate.png)
+![generate film](images/FilmGenerate.png)
 
 Генерация 10 значений для таблицы *studio*:  
 
-![generate studio](MovieDBGenerator/images/StudioGenerate.png)
+![generate studio](images/StudioGenerate.png)
 
 Генерация 13 значений для таблицы *genre*:  
 
-![generate genre](MovieDBGenerator/images/GenreGenerate.png)
+![generate genre](images/GenreGenerate.png)
 
 Генерация 20 значений для таблицы *country*:  
 
-![generate country](MovieDBGenerator/images/CountryGenerate.png)
+![generate country](images/CountryGenerate.png)
 
 Генерация 30 значений для таблицы *person*:  
 
-![generate person](MovieDBGenerator/images/PersonGenerate.png)
+![generate person](images/PersonGenerate.png)
 
 Генерация 20 значений для ассоциативной таблицы *genre_film*:  
 
-![generate genre_film](MovieDBGenerator/images/GenreFilmGenerate.png)
+![generate genre_film](images/GenreFilmGenerate.png)
 
 Генерация 30 значений для ассоциативной таблицы *person_in_film*:  
 
-![generate person_in_film](MovieDBGenerator/images/PersonInFilmGenerate.png)
+![generate person_in_film](images/PersonInFilmGenerate.png)
 
 ### Вывод ###
 
